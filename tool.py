@@ -3,9 +3,7 @@ import ifcfg
 import json
 
 if __name__ == "__main__":
-    ifconfig = os.system("ifconfig")
-    print(ifconfig)
-    print('-----------------------------------------------------')
+    #ifconfig = os.system("ifconfig")
     devicesName = []
     for name, interface in ifcfg.interfaces().items():
         # print(interface['name'])         # First IPv4 found
@@ -21,4 +19,9 @@ if __name__ == "__main__":
         count += 1
 
     choice = int(input());
-    print(devicesName[choice - 1])
+    attDevice = devicesName[choice - 1]
+    os.system("sudo -S ifconfig " + attDevice +  " down")
+    os.system("sudo -S iwconfig " + attDevice + " mode monitor")
+    os.system("sudo -S ifconfig " + attDevice + " up")
+    os.system("iwconfig")
+
