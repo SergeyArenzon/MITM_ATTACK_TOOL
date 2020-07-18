@@ -1,6 +1,9 @@
 import os
+import subprocess
+
 import ifcfg
 from wifi import Cell, Scheme
+
 
 
 
@@ -23,12 +26,6 @@ def chooseDevice():
     attDevice = devicesName[choice - 1]
     return attDevice
 
-def APScan():
-    scanDevice = chooseDevice()
-    scannedAPs = list(Cell.all(scanDevice))
-    print("SSID         " + "ADDRESS")
-    for ap in scannedAPs:
-        print(ap.ssid + "        " + ap.address)
 
 
 
@@ -42,26 +39,5 @@ def goMonitorMode(attDevice):
 
 
 if __name__ == "__main__":
-
-
-    APScan()
-
-
-    # devicesName = []
-    # for name, interface in ifcfg.interfaces().items():
-    #     # print(interface['name'])         # First IPv4 found
-    #     # print(interface['inet4'])        # List of ips
-    #     # print(interface['inet6'])
-    #     # print(interface['netmask'])
-    #     # print(interface['broadcast'])
-    #     devicesName.append(interface['device'])
-    # print("Choose attacking device: ")
-    # count = 1
-    # for device in devicesName:
-    #     print(str(count) + '.' + device)
-    #     count += 1
-    #
-    # choice = int(input());
-    # attDevice = devicesName[choice - 1]
-    # goMonitorMode(attDevice)
-
+    attDevice = chooseDevice()
+    goMonitorMode(attDevice)
