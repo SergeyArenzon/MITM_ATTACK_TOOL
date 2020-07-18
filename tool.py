@@ -1,5 +1,6 @@
 import os
 import ifcfg
+from wifi import Cell, Scheme
 
 
 
@@ -24,9 +25,10 @@ def chooseDevice():
 
 def APScan():
     scanDevice = chooseDevice()
-    os.system("iwlist " + scanDevice + " scan")
-
-    # os.system("sudo -S iwlist " + scanDevice + " scan")
+    scannedAPs = list(Cell.all(scanDevice))
+    print("SSID         " + "ADDRESS")
+    for ap in scannedAPs:
+        print(ap.ssid + "        " + ap.address)
 
 
 
