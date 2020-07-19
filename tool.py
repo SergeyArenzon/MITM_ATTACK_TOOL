@@ -30,11 +30,13 @@ def chooseDevice():
 
 def printAP():
     aps = (list(Cell.all("wlp3s0")))
-    print('\033[91m' + "SSID           ADDRESS      ")
+    print('\033[91m' + "SSID             ADDRESS              SIGNAL")
     for ap in aps:
-        ap_ssid = "{:<15}".format(ap.ssid)
+        ap_ssid = ap.ssid[:15]
+        if len(ap_ssid) < 15:
+            ap_ssid += ' ' * (15 - len(ap_ssid))
         ap_address = ap.address #size 17
-        print('\033[94m' + ap_ssid + ap_address)
+        print('\033[94m' + ap_ssid + "  " + ap_address+"    "+str(ap.signal))
 
 
 
