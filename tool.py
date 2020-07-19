@@ -1,10 +1,6 @@
-import errno
-import os
-import subprocess
-import sys
 import ifcfg
 from wifi import Cell, Scheme
-
+from scapy.all import *
 
 
 
@@ -29,15 +25,19 @@ def chooseDevice():
 
 
 def printAP():
+    devices = []
     aps = (list(Cell.all("wlp3s0")))
-    print('\033[91m' + "SSID             ADDRESS              SIGNAL")
+    print('\033[91m' + "   SSID             ADDRESS              SIGNAL")
+    count = 1
     for ap in aps:
+        devices.append(ap)
         ap_ssid = ap.ssid[:15]
         if len(ap_ssid) < 15:
             ap_ssid += ' ' * (15 - len(ap_ssid))
         ap_address = ap.address #size 17
-        print('\033[94m' + ap_ssid + "  " + ap_address+"    "+str(ap.signal))
-
+        print('\033[94m' + str(count) + '. ' + '\033[94m' + ap_ssid + "  " + ap_address+"    " + str(ap.signal))
+        count += 1
+    return devices
 
 
 def goMonitorMode(attDevice):
@@ -52,8 +52,8 @@ def checkFotRoot():
         sys.exit("\nOnly root can run this script\n")
 
 if __name__ == "__main__":
-    checkFotRoot()
-    # attDevice = chooseDevice()
-    # goMonitorMode(attDevice)
+    #checkFotRoot()
+     attDevice = chooseDevice()
+     goMonitorMode(attDevice)
 
-    printAP()
+ #   printAP()
