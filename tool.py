@@ -1,6 +1,7 @@
+import errno
 import os
 import subprocess
-
+import sys
 import ifcfg
 from wifi import Cell, Scheme
 
@@ -27,6 +28,11 @@ def chooseDevice():
     return attDevice
 
 
+def printAP():
+    aps = (list(Cell.all("wlp3s0")))
+    print()
+    for ap in aps:
+        print(ap.ssid)
 
 
 def goMonitorMode(attDevice):
@@ -36,8 +42,13 @@ def goMonitorMode(attDevice):
     print(attDevice + " is now in monitor mode!")
 
 
-
+def checkFotRoot():
+    if not os.geteuid() == 0:
+        sys.exit("\nOnly root can run this script\n")
 
 if __name__ == "__main__":
-    attDevice = chooseDevice()
-    goMonitorMode(attDevice)
+    checkFotRoot()
+    # attDevice = chooseDevice()
+    # goMonitorMode(attDevice)
+
+    printAP()
