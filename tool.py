@@ -30,9 +30,12 @@ def chooseDevice():
 
 def printAP():
     aps = (list(Cell.all("wlp3s0")))
-    print()
+    print('\033[91m' + "SSID           ADDRESS      ")
     for ap in aps:
-        print(ap.ssid)
+        ap_ssid = "{:<15}".format(ap.ssid)
+        ap_address = ap.address #size 17
+        print('\033[94m' + ap_ssid + ap_address)
+
 
 
 def goMonitorMode(attDevice):
