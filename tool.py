@@ -1,7 +1,8 @@
 import ifcfg
+from scapy.layers.l2 import ARP, Ether
 from wifi import Cell, Scheme
 from scapy.all import *
-
+from PyAccessPoint import pyaccesspoint
 
 
 def chooseDevice():
@@ -52,8 +53,10 @@ def checkFotRoot():
         sys.exit("\nOnly root can run this script\n")
 
 if __name__ == "__main__":
-    #checkFotRoot()
-     attDevice = chooseDevice()
-     goMonitorMode(attDevice)
-
- #   printAP()
+    checkFotRoot()
+    attDevice = chooseDevice()
+    goMonitorMode(attDevice)
+    printAP()
+    access_point = pyaccesspoint.AccessPoint(wlan="wlp0s20f0u2", ssid="sergggggccg")
+    access_point.start()
+    access_point.stop()
