@@ -52,11 +52,25 @@ def checkFotRoot():
     if not os.geteuid() == 0:
         sys.exit("\nOnly root can run this script\n")
 
+
+class AP:
+    def __init__(self, wlan, ssid):
+        self.wlan = wlan
+        self.ssid = ssid
+        self.ap =  pyaccesspoint.AccessPoint(wlan=wlan, ssid=ssid)
+
+    def start(self):
+        self.ap.start()
+    def stop(self):
+        self.ap.stop()
+
+
 if __name__ == "__main__":
     checkFotRoot()
     attDevice = chooseDevice()
     goMonitorMode(attDevice)
-    printAP()
-    access_point = pyaccesspoint.AccessPoint(wlan="wlp0s20f0u2", ssid="sergggggccg")
-    access_point.start()
-    access_point.stop()
+    # printAP()
+
+    ap = AP(attDevice, "xxxxxxxx" )
+    ap.start()
+    ap.stop()
