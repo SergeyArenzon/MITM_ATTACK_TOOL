@@ -1,4 +1,5 @@
 import ifcfg
+from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt, RadioTap
 from scapy.layers.l2 import ARP, Ether
 from wifi import Cell, Scheme
 from scapy.all import *
@@ -54,10 +55,10 @@ def checkFotRoot():
 
 
 class AP:
-    def __init__(self, wlan, ssid):
+    def __init__(self, wlan):
         self.wlan = wlan
-        self.ssid = ssid
-        self.ap =  pyaccesspoint.AccessPoint(wlan=wlan, ssid=ssid)
+        #self.ssid = ssid
+        self.ap =  pyaccesspoint.AccessPoint(wlan=wlan, ssid='sergey',password="123456789")
 
     def start(self):
         self.ap.start()
@@ -69,8 +70,6 @@ if __name__ == "__main__":
     checkFotRoot()
     attDevice = chooseDevice()
     goMonitorMode(attDevice)
-    # printAP()
-
-    ap = AP(attDevice, "xxxxxxxx" )
-    ap.start()
-    ap.stop()
+    printAP()
+    # print(attDevice)
+    os.system('trackerjacker -i ' + attDevice + ' --h')
