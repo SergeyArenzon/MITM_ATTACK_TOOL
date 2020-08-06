@@ -2,14 +2,15 @@
 
 
 echo "Access Point creating script is running..."
+
+
+
 #disable network
 systemctl stop NetworkManager
 
 airmon-ng check kill
 
 ifconfig wlp3s0 10.0.0.1/24
-
-ifconfig wlp3s0 10.0.0.1 netmask 255.255.255.0
 
 route add default gw 10.0.0.1
 
