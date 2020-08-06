@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/bash
+
 
 systemctl stop NetworkManager
 airmon-ng check kill
