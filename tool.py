@@ -66,19 +66,18 @@ class AP:
         self.ap.stop()
 
 def apRescanHandler(interface):
-    devices = printAP(interface)
-    print(devices)
+    devices = (list(printAP(interface)))
     attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
     while attSsid == "R" or attSsid == "r":
-        devices = printAP(interface)
+        devices = (list(printAP(interface)))
         attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
-    return devices[attSsid].ssid
+    return devices[int(attSsid) - 1].ssid
 
 if __name__ == "__main__":
     checkFotRoot()
     apDevice = chooseDevice()
     ssid = apRescanHandler(apDevice)
-    # print(ssid)
+    print(ssid)
     # print(attDevice)
     # os.system('trackerjacker -i ' + attDevice + ' --h')
     # goMonitorMode(attDevice)
