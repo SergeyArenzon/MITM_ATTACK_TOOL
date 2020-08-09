@@ -89,7 +89,8 @@ def createAP(ssid, interface):
     f.close()
     s.close()
 
-    os.system("sudo bash ./eviltwinfiles/fake-ap-start.sh ")
+    os.system("sudo bash fake-ap-start.sh")
+
 
 
 if __name__ == "__main__":
