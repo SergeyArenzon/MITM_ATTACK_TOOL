@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+echo "dddddddddddddddddddddddddddddddd"
 
 systemctl stop NetworkManager
 airmon-ng check kill
@@ -14,9 +15,9 @@ iptables --table nat --delete-chain
 iptables -P FORWARD ACCEPT
 
 dnsmasq -C dnsmasq.conf
-hostapd hostapd.conf 
-echo "Starting apache servet"
-systemctl start httpd
+hostapd hostapd.conf -B 
+echo "Starting apache server"
+sudo systemctl start httpd
 
 
 
