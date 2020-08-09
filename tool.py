@@ -15,7 +15,7 @@ def chooseDevice():
         # print(interface['netmask'])
         # print(interface['broadcast'])
         devicesName.append(interface['device'])
-    print("Choose attacking device: ")
+    print("Choose AP creating device: ")
     count = 1
     for device in devicesName:
         print(str(count) + '.' + device)
@@ -26,9 +26,9 @@ def chooseDevice():
     return attDevice
 
 
-def printAP():
+def printAP(interface):
     devices = []
-    aps = (list(Cell.all("wlp3s0")))
+    aps = (list(Cell.all(interface)))
     print('\033[91m' + "   SSID             ADDRESS              SIGNAL")
     count = 1
     for ap in aps:
@@ -65,11 +65,20 @@ class AP:
     def stop(self):
         self.ap.stop()
 
+def apRescanHandler(interface):
+    devices = printAP(interface)
+    print(devices)
+    attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
+    while attSsid == "R" or attSsid == "r":
+        devices = printAP(interface)
+        attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
+    return devices[attSsid].ssid
 
 if __name__ == "__main__":
     checkFotRoot()
-    attDevice = chooseDevice()
-    goMonitorMode(attDevice)
-    printAP()
+    apDevice = chooseDevice()
+    ssid = apRescanHandler(apDevice)
+    # print(ssid)
     # print(attDevice)
-    os.system('trackerjacker -i ' + attDevice + ' --h')
+    # os.system('trackerjacker -i ' + attDevice + ' --h')
+    # goMonitorMode(attDevice)
