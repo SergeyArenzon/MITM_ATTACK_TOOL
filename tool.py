@@ -3,7 +3,8 @@ from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt, RadioTap, Dot11Deau
 from scapy.layers.l2 import ARP, Ether
 from wifi import Cell, Scheme
 from scapy.all import *
-
+import yaml
+import io
 
 
 def chooseDevice():
@@ -85,6 +86,7 @@ def stopAP():
 
 
 def deauth():
+    print("Choose interface for deauth attack")
     interface = chooseDevice()
     goMonitorMode(interface)
     brdmac = "ff:ff:ff:ff:ff:ff"
@@ -97,7 +99,13 @@ if __name__ == "__main__":
     # ssid = apRescanHandler(apDevice)
     # startAP(ssid, apDevice)
     #os.system('trackerjacker -i ' + apDevice + ' --map')
-    deauth()
+    stream = open("wifi_map.yaml", 'r')
+    docs = yaml.load_all(stream)
+    for doc in docs:
+        for k, v in doc.items():
+            print(k, "->", v)
+        print("\n")
+
 
 
 
