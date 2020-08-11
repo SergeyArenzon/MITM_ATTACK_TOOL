@@ -8,6 +8,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .login-div {
   max-width: 430px;
   padding: 35px;
@@ -23,4 +24,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100px;
+}
+
+.waves-effect{
+    color: white;
 }
