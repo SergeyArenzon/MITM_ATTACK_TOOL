@@ -108,18 +108,11 @@ class Device:
         self.signal = signal
         self.vendor = vendor
 
-
-if __name__ == "__main__":
-    # checkFotRoot()
-    # apDevice = chooseDevice()
-    # ssid = apRescanHandler(apDevice)
-    # startAP(ssid, apDevice)
-    #os.system('trackerjacker -i ' + apDevice + ' --map')
+def printDevices(ssid):
     stream = open("wifi_map.yaml", 'r')
     docs = yaml.load_all(stream)
-    wifilist =[]
 
-    myAP = "Casa"
+    myAP = ssid
 
     for doc in docs:
         for name, v in doc.items():
@@ -132,16 +125,31 @@ if __name__ == "__main__":
         apBssid = o
         devices = v["devices"]
 
-
     ap = AP(apSsid, apBssid)
 
     for bssid, other in devices.items():
         device = Device(bssid, other['signal'], other['vendor'])
         ap.addDevice(device)
 
-    print(ap.ssid)
-    print(ap.bssid)
+    # print(ap.ssid)
+    # print(ap.bssid)
+    # for device in ap.connectedDevices:
+    #     print(device.bssid)
+    #     print(device.signal)
+    #     print(device.vendor)
+
+
+    print("\033[91mAP ssid: " + apSsid + "\nAP bssid: " + ap.bssid)
+    print("Connected divices list:")
+    print("\033[94mSSID                  SIGNAL    VENDOR")
     for device in ap.connectedDevices:
-        print(device.bssid)
-        print(device.signal)
-        print(device.vendor)
+        print(device.bssid + "     " + str(device.signal) + "       " + device.vendor)
+
+if __name__ == "__main__":
+    # checkFotRoot()
+    # apDevice = chooseDevice()
+    # ssid = apRescanHandler(apDevice)
+    # startAP(ssid, apDevice)
+    #os.system('trackerjacker -i ' + apDevice + ' --map')
+
+    printDevices("Casa")
