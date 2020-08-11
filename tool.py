@@ -146,10 +146,10 @@ def printDevices(ssid):
         print(device.bssid + "     " + str(device.signal) + "       " + device.vendor)
 
 if __name__ == "__main__":
-    # checkFotRoot()
-    # apDevice = chooseDevice()
+    checkFotRoot()
+    apDevice = chooseDevice()
     # ssid = apRescanHandler(apDevice)
     # startAP(ssid, apDevice)
-    #os.system('trackerjacker -i ' + apDevice + ' --map')
-
+    os.system("rm wifi_map.yaml")
+    os.system('trackerjacker -i ' + apDevice + ' --map')
     printDevices("Casa")

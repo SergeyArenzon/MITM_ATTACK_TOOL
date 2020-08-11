@@ -1,274 +1,261 @@
 2.4V1:
   40:a5:ef:7a:17:f2:
-    bytes: 1875
+    bssid: 40:a5:ef:7a:17:f2
+    bytes: 5381
     channels:
+    - 8
     - 9
+    - 10
+    - 7
     devices:
+      00:12:12:50:b7:6d:
+        bytes: 372
+        last_seen: 1597139263.7727633
+        signal: -68
+        vendor: PLUS  Corporation
       00:1e:c0:3f:f4:aa:
-        bytes: 0
-        last_seen: 1597057369.2448876
-        signal: -75
+        bytes: 124
+        last_seen: 1597139263.5648856
+        signal: -64
         vendor: Microchip Technology Inc.
-      01:80:c2:00:00:00:
-        bytes: 104
-        last_seen: 1597057485.9675207
-        signal: -75
+      00:90:a9:ef:af:d0:
+        bytes: 530
+        last_seen: 1597139269.9174242
+        signal: -66
+        vendor: WESTERN DIGITAL
+      01:00:5e:00:00:01:
+        bytes: 868
+        last_seen: 1597139263.158534
+        signal: -66
         vendor: ''
-      40:a5:ef:e1:4a:00:
-        bytes: 112
-        last_seen: 1597057478.593254
-        signal: -73
+      01:00:5e:00:00:fc:
+        bytes: 110
+        last_seen: 1597139269.1004663
+        signal: -66
+        vendor: ''
+      01:00:5e:7f:ff:fa:
+        bytes: 640
+        last_seen: 1597139270.1238742
+        signal: -68
+        vendor: ''
+      40:a5:ef:6a:88:01:
+        bytes: 248
+        last_seen: 1597139262.967465
+        signal: -64
         vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
-      74:da:da:33:94:42:
-        bytes: 0
-        last_seen: 1597057376.8094382
-        signal: -75
-        vendor: D-Link International
-      cc:70:ed:53:76:66:
-        bytes: 104
-        last_seen: 1597057485.9674768
-        signal: -75
+      40:a5:ef:7a:0e:81:
+        bytes: 248
+        last_seen: 1597139263.1585262
+        signal: -66
+        vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
+      40:a5:ef:8a:9f:29:
+        bytes: 124
+        last_seen: 1597139262.9507477
+        signal: -66
+        vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
+      40:a5:ef:8a:a4:21:
+        bytes: 248
+        last_seen: 1597139262.9621432
+        signal: -66
+        vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
+      dc:4f:22:21:86:b7:
+        bytes: 479
+        last_seen: 1597139270.0301998
+        signal: -68
         vendor: ''
-      cf:00:00:00:00:00:
-        bytes: 0
-        last_seen: 1597057376.8093925
-        signal: -75
-        vendor: ''
-    signal: -77
+      e8:2a:ea:1c:75:00:
+        bytes: 3946
+        last_seen: 1597139270.529466
+        signal: -68
+        vendor: Intel Corporate
+    signal: -66
+    ssid: null
     vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
 
 Casa:
   a4:91:b1:8a:a4:46:
-    bytes: 5359
+    bssid: a4:91:b1:8a:a4:46
+    bytes: 40781
     channels:
     - 1
     - 2
-    - 9
-    - 7
+    - 3
     devices:
-      30:52:cb:c5:14:35:
-        bytes: 84
-        last_seen: 1597057493.1492922
-        signal: -47
-        vendor: Liteon Technology Corporation
-      33:33:ff:8b:3b:fc:
-        bytes: 138
-        last_seen: 1597057481.6372342
-        signal: -31
+      01:00:5e:00:00:fb:
+        bytes: 415
+        last_seen: 1597139259.394029
+        signal: -22
         vendor: ''
-      3c:6a:a7:79:58:97:
-        bytes: 256
-        last_seen: 1597057492.5697827
-        signal: -27
+      33:33:ff:49:97:30:
+        bytes: 150
+        last_seen: 1597139260.1043594
+        signal: -66
+        vendor: ''
+      33:33:ff:8d:d0:e1:
+        bytes: 150
+        last_seen: 1597139260.1025925
+        signal: -48
+        vendor: ''
+      33:33:ff:ca:8e:0a:
+        bytes: 150
+        last_seen: 1597139259.0863552
+        signal: -24
         vendor: ''
       a4:91:b1:8a:a4:45:
-        bytes: 1718
-        last_seen: 1597057489.238471
-        signal: -256
+        bytes: 30525
+        last_seen: 1597139273.332168
+        signal: -26
         vendor: ''
       bc:a5:8b:ea:c5:0c:
-        bytes: 290
-        last_seen: 1597057481.4526572
-        signal: -31
+        bytes: 37609
+        last_seen: 1597139273.1733484
+        signal: -22
         vendor: ''
-      e8:b1:fc:25:85:50:
-        bytes: 707
-        last_seen: 1597057489.242319
-        signal: -29
-        vendor: Intel Corporate
-      f4:96:34:74:18:1e:
-        bytes: 467
-        last_seen: 1597057489.26812
-        signal: -27
-        vendor: Intel Corporate
       f6:dd:0d:60:c5:ac:
-        bytes: 1326
-        last_seen: 1597057481.6395445
-        signal: -31
+        bytes: 436
+        last_seen: 1597139273.3339067
+        signal: -28
         vendor: ''
-    signal: -47
+    signal: -26
+    ssid: Casa
     vendor: ''
 
 Dalal:
   00:b8:c2:48:fe:1d:
-    bytes: 2344
+    bssid: 00:b8:c2:48:fe:1d
+    bytes: 5309
     channels:
-    - 5
-    devices: {}
-    signal: -75
+    - 3
+    devices:
+      00:b8:c2:48:fe:1c:
+        bytes: 124
+        last_seen: 1597139273.3197048
+        signal: -64
+        vendor: ''
+    signal: -66
+    ssid: Dalal
     vendor: ''
 
 G1-24:
   40:a5:ef:7a:17:f3:
-    bytes: 1896
+    bssid: 40:a5:ef:7a:17:f3
+    bytes: 2988
     channels:
-    - 9
+    - 7
     devices: {}
-    signal: -77
+    signal: -68
+    ssid: G1-24
     vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
 
 Magic:
   14:cc:20:36:ed:b7:
-    bytes: 768
+    bssid: 14:cc:20:36:ed:b7
+    bytes: 268
     channels:
     - 6
     devices: {}
-    signal: -81
+    signal: -66
+    ssid: Magic
     vendor: TP-LINK TECHNOLOGIES CO.,LTD.
-  c4:68:d0:52:b7:a5:
-    bytes: 1656
+
+NADAV 2.4:
+  78:32:1b:d5:25:2c:
+    bssid: 78:32:1b:d5:25:2c
+    bytes: 264
     channels:
-    - 6
+    - 3
     devices: {}
-    signal: -81
+    signal: -72
+    ssid: NADAV 2.4
     vendor: ''
 
-mark-d-link:
-  28:3b:82:4e:70:29:
-    bssid: 28:3b:82:4e:70:29
-    bytes: 658
+tatalex666:
+  a0:ab:1b:62:89:08:
+    bssid: a0:ab:1b:62:89:08
+    bytes: 1028
     channels:
-    - 13
-    devices:
-      90:f1:aa:6c:b3:35:
-        bytes: 112
-        last_seen: 1597057480.627363
-        signal: -81
-        vendor: Samsung Electronics Co.,Ltd
-    signal: -85
-    ssid: mark-d-link
-    vendor: ''
-
-srym3:
-  74:da:38:1c:b5:58:
-    bssid: 74:da:38:1c:b5:58
-    bytes: 205
-    channels:
-    - 2
+    - 1
     devices: {}
-    signal: -83
-    ssid: srym3
-    vendor: Edimax Technology Co. Ltd.
-
-unknown_ssid_26:18:1d:dd:a9:09:
-  26:18:1d:dd:a9:09:
-    bssid: 26:18:1d:dd:a9:09
-    bytes: 533
-    channels:
-    - 11
-    - 12
-    devices:
-      3c:bd:3e:fe:22:ff:
-        bytes: 579
-        last_seen: 1597057487.6346273
-        signal: -65
-        vendor: Beijing Xiaomi Electronics Co., Ltd.
-    signal: -65
-    ssid: null
-    vendor: ''
+    signal: -70
+    ssid: tatalex666
+    vendor: D-Link International
 
 unknown_ssid_40:a5:ef:7a:17:f9:
   40:a5:ef:7a:17:f9:
     bssid: 40:a5:ef:7a:17:f9
-    bytes: 1648
+    bytes: 1962
     channels:
-    - 9
+    - 7
     devices: {}
-    signal: -75
+    signal: -64
     ssid: ''
     vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
 
 unknown_ssid_9e:da:c4:cb:17:da:
   9e:da:c4:cb:17:da:
     bssid: 9e:da:c4:cb:17:da
-    bytes: 1750
+    bytes: 362
     channels:
-    - 10
+    - 11
     devices: {}
-    signal: -81
+    signal: -68
     ssid: ''
     vendor: ''
 
+unknown_ssid_b4:ee:b4:ac:f3:f4:
+  b4:ee:b4:ac:f3:f4:
+    bssid: b4:ee:b4:ac:f3:f4
+    bytes: 164
+    channels:
+    - 9
+    - 12
+    devices:
+      28:ad:3e:09:a1:67:
+        bytes: 164
+        last_seen: 1597139264.625487
+        signal: -60
+        vendor: ''
+      b4:ee:b4:ac:f3:f2:
+        bytes: 108
+        last_seen: 1597139262.8454478
+        signal: -62
+        vendor: ASKEY COMPUTER CORP
+    signal: -60
+    ssid: null
+    vendor: ASKEY COMPUTER CORP
+
 viktorzx05:
   98:da:c4:cb:17:da:
-    bytes: 726
+    bssid: 98:da:c4:cb:17:da
+    bytes: 1500
     channels:
     - 10
     devices: {}
-    signal: -81
+    signal: -66
+    ssid: viktorzx05
     vendor: ''
 
 ~unassociated_devices:
   00:00:00:00:00:00:
     bytes: 0
     devices:
-      00:b8:c2:55:7d:6f:
-        bytes: 28
-        last_seen: 1597057483.9211223
-        signal: -81
+      00:b8:c2:65:a8:9d:
+        bytes: 40
+        last_seen: 1597139263.752547
+        signal: -70
         vendor: ''
-      14:ae:db:46:36:2d:
-        bytes: 68
-        last_seen: 1597057494.768731
-        signal: -81
-        vendor: VTech Telecommunications Ltd.
-      1c:99:4c:4d:ea:72:
-        bytes: 28
-        last_seen: 1597057494.3488953
-        signal: -81
-        vendor: Murata Manufacturing Co., Ltd.
-      50:de:06:36:90:5b:
-        bytes: 328
-        last_seen: 1597057492.9702141
-        signal: -85
-        vendor: ''
+      3c:bd:3e:fe:22:ff:
+        bytes: 268
+        last_seen: 1597139268.6495152
+        signal: -68
+        vendor: Beijing Xiaomi Electronics Co., Ltd.
       68:57:2d:03:3d:86:
-        bytes: 196
-        last_seen: 1597057493.343996
-        signal: -73
+        bytes: 360
+        last_seen: 1597139270.3506393
+        signal: -64
         vendor: ''
-      70:5a:0f:6d:55:74:
-        bytes: 278
-        last_seen: 1597057481.6677036
-        signal: -75
-        vendor: Hewlett Packard
-      70:f1:1c:81:31:9f:
-        bytes: 0
-        last_seen: 1597057369.082519
-        signal: -79
-        vendor: ''
-      70:f1:a1:4c:bb:0f:
-        bytes: 28
-        last_seen: 1597057493.7675061
-        signal: -81
-        vendor: Liteon Technology Corporation
-      98:93:cc:aa:6e:6f:
-        bytes: 0
-        last_seen: 1597057361.8595314
-        signal: -65
-        vendor: LG ELECTRONICS INC
-      b0:d5:9d:fa:67:45:
-        bytes: 76
-        last_seen: 1597057492.8099236
-        signal: -85
-        vendor: Shenzhen Zowee Technology Co., Ltd
-      c0:e4:34:76:ec:ed:
-        bytes: 56
-        last_seen: 1597057485.1895661
-        signal: -81
-        vendor: ''
-      c2:29:38:1c:83:03:
-        bytes: 716
-        last_seen: 1597057474.365823
-        signal: -25
-        vendor: ''
-      d8:68:c3:b9:4f:23:
-        bytes: 0
-        last_seen: 1597057357.6099596
+      e8:b1:fc:25:85:50:
+        bytes: 40
+        last_seen: 1597139259.087638
         signal: -27
-        vendor: ''
-      dc:4f:22:21:86:b7:
-        bytes: 84
-        last_seen: 1597057486.0479298
-        signal: -73
-        vendor: ''
+        vendor: Intel Corporate
