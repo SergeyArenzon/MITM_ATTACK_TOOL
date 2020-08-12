@@ -131,25 +131,18 @@ def printDevices(ssid):
         device = Device(bssid, other['signal'], other['vendor'])
         ap.addDevice(device)
 
-    # print(ap.ssid)
-    # print(ap.bssid)
-    # for device in ap.connectedDevices:
-    #     print(device.bssid)
-    #     print(device.signal)
-    #     print(device.vendor)
-
-
     print("\033[91mAP ssid: " + apSsid + "\nAP bssid: " + ap.bssid)
     print("Connected divices list:")
     print("\033[94mSSID                  SIGNAL    VENDOR")
     for device in ap.connectedDevices:
         print(device.bssid + "     " + str(device.signal) + "       " + device.vendor)
-
+    return ap
 if __name__ == "__main__":
     checkFotRoot()
     apDevice = chooseDevice()
-    # ssid = apRescanHandler(apDevice)
-    # startAP(ssid, apDevice)
-    os.system("rm wifi_map.yaml")
-    os.system('trackerjacker -i ' + apDevice + ' --map')
-    printDevices("Casa")
+    ssid = apRescanHandler(apDevice)
+    startAP(ssid, apDevice)
+    deauth()
+    # os.system("rm wifi_map.yaml")
+    # os.system('trackerjacker -i ' + apDevice + ' --map')
+    # printDevices("Casa")
