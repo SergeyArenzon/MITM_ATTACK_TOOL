@@ -16,7 +16,7 @@ def chooseDevice():
         # print(interface['netmask'])
         # print(interface['broadcast'])
         devicesName.append(interface['device'])
-    print("Choose interface: ")
+    # print("Choose interface: ")
     count = 1
     for device in devicesName:
         print(str(count) + '.' + device)
@@ -86,7 +86,7 @@ def stopAP():
 
 
 def deauth():
-    print("Choose interface for deauth attack")
+    print("\nChoose interface for deauth attack")
     interface = chooseDevice()
     goMonitorMode(interface)
     brdmac = "ff:ff:ff:ff:ff:ff"

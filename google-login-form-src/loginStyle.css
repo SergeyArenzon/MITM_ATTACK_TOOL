@@ -75,8 +75,8 @@ a{
 }
 .gmailStyle input[type=text]:not(.browser-default):focus:not([readonly]),
 .gmailStyle input[type=password]:not(.browser-default):focus:not([readonly]) {
-  box-shadow: 0px 0 1px #3483eb;
-  border: 1px solid #3483eb;
+  box-shadow: 0px 0 1px #3976ff;
+  border: 1px solid #3976ff;
 }
 .gmailStyle input[type=text]:not(.browser-default),
 .gmailStyle input[type=password]:not(.browser-default) {
