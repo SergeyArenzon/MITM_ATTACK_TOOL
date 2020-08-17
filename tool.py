@@ -139,6 +139,7 @@ def printDevices(ssid):
     print("\033[94mSSID                  SIGNAL    VENDOR")
     for device in ap.connectedDevices:
         print(device.bssid + "     " + str(device.signal) + "       " + device.vendor)
+    os.system("rm wifi_map.yaml")
     return ap
 if __name__ == "__main__":
     checkFotRoot()
@@ -146,11 +147,15 @@ if __name__ == "__main__":
     ap = apRescanHandler(apDevice)
     ssid = ap[0]
     addr = ap[1]
-    print(type(addr))
-    startAP(ssid, apDevice)
-    brdmac = "ff:ff:ff:ff:ff:ff"
-    deauth(brdmac, addr)
-    # os.system("rm wifi_map.yaml")
-    # os.system('trackerjacker -i ' + apDevice + ' --map')
+
+    os.system("rm wifi_map.yaml")
+    os.system('trackerjacker -i ' + apDevice + ' --map')
+    printDevices(ssid)
+
+    # print(type(addr))
+    # startAP(ssid, apDevice)
+    # brdmac = "ff:ff:ff:ff:ff:ff"
+    # deauth(brdmac, addr)
+
     # printDevices("Casa")
     stopAttack()
