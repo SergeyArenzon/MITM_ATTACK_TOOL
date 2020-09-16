@@ -1,8 +1,12 @@
+# Sergey Arenzon
+
 import ifcfg
 from scapy.layers.dot11 import Dot11, RadioTap, Dot11Deauth
 from wifi import Cell
 from scapy.all import *
 import yaml
+
+
 
 
 #Shows available devices
@@ -52,7 +56,6 @@ def goMonitorMode(attDevice):
 def checkFotRoot():
     if not os.geteuid() == 0:
         sys.exit("\nOnly root can run this script\n")
-
 
 def apRescanHandler(interface):
     print("\n\n\n===============\nScanned APs\n===============")
