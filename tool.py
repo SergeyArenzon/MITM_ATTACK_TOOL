@@ -57,6 +57,7 @@ def checkFotRoot():
 
 
 def apRescanHandler(interface):
+    print("\n\n\n=================\nScanned APs\n=================")
     devices = (list(printAP(interface)))
     attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
     while attSsid == "R" or attSsid == "r":
@@ -133,13 +134,15 @@ def printDevices(ssid):
     for bssid, other in devices.items():
         device = Device(bssid, other['signal'], other['vendor'])
         ap.addDevice(device)
-
+    print("\n\n\n ")
+    print("===============================\nDevices connected to " + ssid + "\n===============================")
     print("\033[91mAP ssid: " + apSsid + "\nAP bssid: " + ap.bssid)
-    print("Connected divices list:")
+    print("Connected divices list:\n")
     print("\033[94mSSID                  SIGNAL    VENDOR")
     for device in ap.connectedDevices:
         print(device.bssid + "     " + str(device.signal) + "       " + device.vendor)
     os.system("rm wifi_map.yaml")
+    print("\n\n\n")
     return ap
 if __name__ == "__main__":
     checkFotRoot()
@@ -147,10 +150,10 @@ if __name__ == "__main__":
     ap = apRescanHandler(apDevice)
     ssid = ap[0]
     addr = ap[1]
-    startAP(ssid, apDevice)
+    # startAP(ssid, apDevice)
     os.system("rm wifi_map.yaml")
     os.system('trackerjacker -i ' + apDevice + ' --map')
     printDevices(ssid)
     brdmac = "ff:ff:ff:ff:ff:ff"
-    deauth(brdmac, addr)
+    # deauth(brdmac, addr)
     stopAttack()
