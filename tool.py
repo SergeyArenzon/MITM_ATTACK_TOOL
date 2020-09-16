@@ -27,7 +27,7 @@ def chooseDevice():
     attDevice = devicesName[choice - 1]
     return attDevice
 
-
+#print the AP (SSID, MAC, Signal)
 def printAP(interface):
     devices = []
     aps = (list(Cell.all(interface)))
