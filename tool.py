@@ -58,7 +58,8 @@ def checkFotRoot():
         sys.exit("\nOnly root can run this script\n")
 
 def apRescanHandler(interface):
-    print("\n\n\n===============\nScanned APs\n===============")
+    os.system("clear")
+    print("\n\n\n===========\nScanned APs\n===========")
     devices = (list(printAP(interface)))
     attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
     while attSsid == "R" or attSsid == "r":
@@ -171,6 +172,8 @@ def chooseAttDevice(ap_list):
 
 if __name__ == "__main__":
     checkFotRoot()
+    os.system("clear")
+    print("Choose device for AP scan:")
     apDevice = chooseDevice()
     ap = apRescanHandler(apDevice)
     ssid = ap[0]
