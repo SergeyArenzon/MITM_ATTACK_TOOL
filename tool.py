@@ -5,7 +5,7 @@ from scapy.all import *
 import yaml
 
 
-
+#Shows available devices
 def chooseDevice():
     devicesName = []
     for name, interface in ifcfg.interfaces().items():
@@ -48,7 +48,7 @@ def goMonitorMode(attDevice):
     os.system("sudo -S ifconfig " + attDevice + " up")
     print(attDevice + " is now in monitor mode!")
 
-
+#Checking option permission
 def checkFotRoot():
     if not os.geteuid() == 0:
         sys.exit("\nOnly root can run this script\n")
