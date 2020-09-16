@@ -7,7 +7,7 @@ import yaml
 import datetime
 import io
 
-
+#Shows available devices
 def chooseDevice():
     devicesName = []
     for name, interface in ifcfg.interfaces().items():
