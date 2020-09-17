@@ -76,6 +76,8 @@ def startAP(ssid, interface):
     # Remove and create hostapd.conf
     os.remove("hostapd.conf")
     s = open("hostapd.conf", "a")
+
+    # Hostapd created fake AP with specific name
     hostapd_conf = "interface=" + interface + "\nssid=" + ssid + "\nchannel=1\ndriver=nl80211"
 
     f.write(dnsmasq_conf)
