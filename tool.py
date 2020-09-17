@@ -71,6 +71,19 @@ def startAP(ssid, interface):
     # Remove and create dnsmasq.conf
     os.remove("dnsmasq.conf")
     f = open("dnsmasq.conf", "a")
+
+    # dhcp server provides ip to connected devices
+    # dnsmasq runs dns server, and let us redirect to our web page
+
+    # dnsmasq conf file:
+    # interface=
+    # dhcp-range=10.0.0.10, 10.0.0.100, 8h (sets the IP range given to connected clients)
+    # dhcp-option=3,10.0.0.1               (sets the gateway IP address, redirect the client to localhost server
+    #                                       3=default gateway
+    #                                       10.0.0.1=localhost IP server)
+    # dhcp-option=6, 10.0.0.1               (dns server)
+    #                                       6=set dns server
+    # adress=/#/10.0.0.1                    (dns spoofing, every url will lead to localhost server)
     dnsmasq_conf = "interface=" + interface + "\ndhcp-range=10.0.0.10,10.0.0.100,8h\ndhcp-option=3,10.0.0.1\ndhcp-option=6,10.0.0.1\naddress=/#/10.0.0.1"
 
     # Remove and create hostapd.conf
